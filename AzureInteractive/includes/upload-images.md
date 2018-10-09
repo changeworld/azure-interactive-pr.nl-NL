@@ -2,19 +2,19 @@
 title: bestand opnemen
 description: bestand opnemen
 services: functions
-author: tdykstra
+author: ggailey777
 manager: jeconnoc
 ms.service: multiple
 ms.topic: include
 ms.date: 06/21/2018
-ms.author: tdykstra
+ms.author: glenga
 ms.custom: include file
-ms.openlocfilehash: 56cfb4c2893977086309660f4f6941fd0d648913
-ms.sourcegitcommit: e721422a57e6deb95245135fd9f4f5677c344d93
+ms.openlocfilehash: 51c7d3e64424d499b473f3b138ce249a9cfd0182
+ms.sourcegitcommit: 81587470a181e314242c7a97cd0f91c82d4fe232
 ms.translationtype: HT
 ms.contentlocale: nl-NL
-ms.lasthandoff: 07/26/2018
-ms.locfileid: "40079243"
+ms.lasthandoff: 10/01/2018
+ms.locfileid: "47460077"
 ---
 De toepassing die u bouwt, is een fotogalerie. De galerie maakt aan de clientzijde gebruik van JavaScript voor het aanroepen van API’s om afbeeldingen te uploaden en weer te geven. In deze module maakt u een API met behulp van een serverloze functie waarmee een tijdelijke URL wordt gegenereerd om een afbeelding te uploaden. De webtoepassing maakt gebruik van de gegenereerde URL om een afbeelding naar Blob Storage te uploaden met behulp van de [Blob Storage REST API](https://docs.microsoft.com/rest/api/storageservices/blob-service-rest-api).
 
@@ -36,12 +36,21 @@ Azure Functions is een service voor het uitvoeren van serverloze functies. Een s
 
 Een Azure-functie-app is een container voor een of meer serverloze functies.
 
-1. Maak een nieuwe Azure-functie-app met een unieke naam in de resourcegroep **first-serverless-app** die u eerder hebt gemaakt. Voor functie-apps is een opslagaccount vereist. In deze zelfstudie gebruikt u het bestaande opslagaccount.
+Maak een nieuwe Azure-functie-app met een unieke naam in de resourcegroep **first-serverless-app** die u eerder hebt gemaakt. Voor functie-apps is een opslagaccount vereist. In deze zelfstudie gebruikt u het bestaande opslagaccount.
 
-    ```azurecli
-    az functionapp create -n <function app name> -g first-serverless-app -s <storage account name> -c westcentralus
-    ```
+```azurecli
+az functionapp create -n <function app name> -g first-serverless-app -s <storage account name> -c westcentralus
+```
 
+## <a name="configure-the-function-app"></a>De functie-app configureren
+
+De functie-app in deze zelfstudie vereist versie 1.x van de Functions-runtime. Door de toepassingsinstelling `FUNCTIONS_WORKER_RUNTIME` in te stellen op `~1`, dwingt u de functie-app de meest recente 1.x-versie te gebruiken. Stel toepassingsinstellingen in met de opdracht [az functionapp config appsettings set](https://docs.microsoft.com/cli/azure/functionapp/config/appsettings#set).
+
+In de volgende Azure CLI-opdracht is `< app_name> de naam van uw functie-app.
+
+```azurecli
+az functionapp config appsettings set --name <function app name> --g first-serverless-app --settings FUNCTIONS_WORKER_RUNTIME=~1
+```
 
 ## <a name="create-an-http-triggered-serverless-function"></a>Een serverloze functie maken die wordt geactiveerd via HTTP
 
