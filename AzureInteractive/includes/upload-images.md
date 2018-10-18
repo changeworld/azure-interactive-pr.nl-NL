@@ -6,15 +6,15 @@ author: ggailey777
 manager: jeconnoc
 ms.service: multiple
 ms.topic: include
-ms.date: 06/21/2018
+ms.date: 10/12/2018
 ms.author: glenga
 ms.custom: include file
-ms.openlocfilehash: 51c7d3e64424d499b473f3b138ce249a9cfd0182
-ms.sourcegitcommit: 81587470a181e314242c7a97cd0f91c82d4fe232
+ms.openlocfilehash: 3779c2e130afa7ee8d5879f30a924e258b7a41e9
+ms.sourcegitcommit: fdb43556b8dcf67cb39c18e532b5fab7ac53eaee
 ms.translationtype: HT
 ms.contentlocale: nl-NL
-ms.lasthandoff: 10/01/2018
-ms.locfileid: "47460077"
+ms.lasthandoff: 10/15/2018
+ms.locfileid: "49315973"
 ---
 De toepassing die u bouwt, is een fotogalerie. De galerie maakt aan de clientzijde gebruik van JavaScript voor het aanroepen van API’s om afbeeldingen te uploaden en weer te geven. In deze module maakt u een API met behulp van een serverloze functie waarmee een tijdelijke URL wordt gegenereerd om een afbeelding te uploaden. De webtoepassing maakt gebruik van de gegenereerde URL om een afbeelding naar Blob Storage te uploaden met behulp van de [Blob Storage REST API](https://docs.microsoft.com/rest/api/storageservices/blob-service-rest-api).
 
@@ -44,12 +44,12 @@ az functionapp create -n <function app name> -g first-serverless-app -s <storage
 
 ## <a name="configure-the-function-app"></a>De functie-app configureren
 
-De functie-app in deze zelfstudie vereist versie 1.x van de Functions-runtime. Door de toepassingsinstelling `FUNCTIONS_WORKER_RUNTIME` in te stellen op `~1`, dwingt u de functie-app de meest recente 1.x-versie te gebruiken. Stel toepassingsinstellingen in met de opdracht [az functionapp config appsettings set](https://docs.microsoft.com/cli/azure/functionapp/config/appsettings#set).
+De functie-app in deze zelfstudie vereist versie 1.x van de Functions-runtime. Door de toepassingsinstelling `FUNCTIONS_EXTENSION_VERSION` in te stellen op `~1`, dwingt u de functie-app de meest recente 1.x-versie te gebruiken. Stel toepassingsinstellingen in met de opdracht [az functionapp config appsettings set](https://docs.microsoft.com/cli/azure/functionapp/config/appsettings#set).
 
-In de volgende Azure CLI-opdracht is `< app_name> de naam van uw functie-app.
+In de volgende Azure CLI-opdracht is < app_name> de naam van uw functie-app.
 
 ```azurecli
-az functionapp config appsettings set --name <function app name> --g first-serverless-app --settings FUNCTIONS_WORKER_RUNTIME=~1
+az functionapp config appsettings set --name <function app name> --g first-serverless-app --settings FUNCTIONS_EXTENSION_VERSION=~1
 ```
 
 ## <a name="create-an-http-triggered-serverless-function"></a>Een serverloze functie maken die wordt geactiveerd via HTTP
