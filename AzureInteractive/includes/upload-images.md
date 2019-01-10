@@ -49,7 +49,7 @@ De functie-app in deze zelfstudie vereist versie 1.x van de Functions-runtime. D
 In de volgende Azure CLI-opdracht is < app_name> de naam van uw functie-app.
 
 ```azurecli
-az functionapp config appsettings set --name <function app name> --g first-serverless-app --settings FUNCTIONS_EXTENSION_VERSION=~1
+az functionapp config appsettings set --name <function app name> -g first-serverless-app --settings FUNCTIONS_EXTENSION_VERSION=~1
 ```
 
 ## <a name="create-an-http-triggered-serverless-function"></a>Een serverloze functie maken die wordt geactiveerd via HTTP
